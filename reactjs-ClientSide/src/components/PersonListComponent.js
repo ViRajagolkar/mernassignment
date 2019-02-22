@@ -1,0 +1,121 @@
+// import React, { Component } from 'react';
+// import HeaderComponent from './HeaderComponent.js';
+// import FooterComponent from './FooterComponent.js';
+// import PersonService from "./../services/PersonService.jsx";
+
+// class PersonListComponent extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = { 
+//             persons:[]
+//          }
+
+//          this.serv = new PersonService();
+//          this.token = sessionStorage.getItem("token");
+//          this.roleName = sessionStorage.getItem("roleName");
+        
+//           if(this.token==="" || this.token===null || this.roleName==="" || this.roleName===null){
+//               var h = this.props.history;
+//               h.push('/login');
+//           }
+
+//           this.status = this.props.match.params.status;
+//           console.log("status: "+this.status);
+//     }
+
+//     componentDidMount(){
+//       console.log("Status cdm"+ this.status);
+//       this.serv.getPersonInfoByStatus(this.status, this.token)
+//                     .then((data) => data.json())
+//                     .then((value) => {if(value.status==200){
+//                         this.setState({persons:[]});
+//                         this.setState({persons:value.data})
+//                         console.log(value.data);
+//                     }
+//                     else{
+//                       this.setState({errorMsg: value.message});
+//                       this.setState({persons:[]});
+//                     }
+//                   }).catch(error => {
+//                         console.log(`Error occured ${error.status}`);
+//                   });        
+//   }
+
+//   onClickViewInfo(){
+//     var h = this.props.history;
+//     //h.push('/personinfo/'+userId);
+//   }
+
+//   render() { 
+//       return ( 
+//           <div className="container page-backcolor">
+//             <HeaderComponent />
+
+//               <div className="main-content">
+//                   <div className="row">
+//               <table className="table table-borderd table-striped">
+//                     <thead>
+//                         <tr>
+//                             <th>UserName</th>
+//                             <th>DOB</th>
+//                             <th>Mobile</th>
+//                             <th>Email</th>
+//                             <th>City</th>
+//                             <th>Actions</th>
+//                         </tr>
+//                     </thead>
+//                       <tbody>
+//                           {
+//                               this.state.persons.map((u, i) => (
+//                                   <TableRow key={i} row={u} >
+//                                   </TableRow>
+//                               ))
+
+//                           }
+//                       </tbody>
+//                 </table>
+//                 </div>
+//               </div>
+//               <FooterComponent />
+//           </div>
+//        );
+//   }
+// }
+
+// class TableRow extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
+
+//   onRowClick(){
+//     this.props.selected(this.props.row);
+//   }
+
+//   render() {
+//     return (
+//       <tr>
+//         {Object.values(this.props.row).map((r, idx) =>(
+//           r === "pending" ? 
+//           <td key={idx}> 
+//             <button className="btn btn-warning">Approve</button>
+//             <button className="btn btn-warning">Reject</button>
+//           </td>
+//           : r === "approved" ?
+//           <td key={idx}>
+//             <button className="btn btn-warning">View Info</button>
+//           </td> 
+//           : r === "rejected" ?
+//           <td key={idx}> 
+//               <button className="btn btn-success">Approve</button>  
+//           </td> 
+//           :
+//           <td key={idx}> {r} </td>
+//           ))
+//         } 
+        
+//       </tr>
+//     );
+//   }
+// }
+
+// export default PersonListComponent;
